@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"app","Source":"./modules/container_app","Dir":"modules/container_app"},{"Key":"gw","Source":"./modules/app_gateway","Dir":"modules/app_gateway"}]}

@@ -1,0 +1,151 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36" version="29.6.1">
+  <diagram name="hello" id="azure-arch">
+    <mxGraphModel dx="1410" dy="833" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontStyle=1;fontColor=#1a1a2e;" value="Inter Task - Hello&amp;nbsp;" vertex="1">
+          <mxGeometry height="40" width="1000" x="327" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="internet" parent="1" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;" value="Internet" vertex="1">
+          <mxGeometry height="90" width="160" x="677" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="sub_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f6ff;strokeColor=#0078d4;strokeWidth=2;dashed=0;arcSize=2;verticalAlign=top;" value="" vertex="1">
+          <mxGeometry height="880" width="1340" x="160" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="sub_icon" parent="1" style="shape=mxgraph.azure2.subscriptions;fillColor=#0078d4;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="24" width="24" x="170" y="228" as="geometry" />
+        </mxCell>
+        <mxCell id="sub_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=12;fontStyle=1;fontColor=#0078d4;" value="Azure Subscription" vertex="1">
+          <mxGeometry height="24" width="200" x="200" y="228" as="geometry" />
+        </mxCell>
+        <mxCell id="rg_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#a0a0a0;strokeWidth=1;dashed=1;arcSize=2;" value="" vertex="1">
+          <mxGeometry height="820" width="1300" x="185" y="265" as="geometry" />
+        </mxCell>
+        <mxCell id="rg_icon" parent="1" style="shape=mxgraph.azure2.resource_group;fillColor=#e05f1b;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="24" width="24" x="195" y="273" as="geometry" />
+        </mxCell>
+        <mxCell id="rg_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontStyle=1;fontColor=#e05f1b;" value="helloapp-dev-rg" vertex="1">
+          <mxGeometry height="24" width="200" x="225" y="273" as="geometry" />
+        </mxCell>
+        <mxCell id="vnet_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef4ff;strokeColor=#0078d4;strokeWidth=1;dashed=1;arcSize=2;" value="" vertex="1">
+          <mxGeometry height="750" width="960" x="205" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="vnet_icon" parent="1" style="shape=mxgraph.azure2.virtual_networks;fillColor=#0078d4;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="24" width="24" x="215" y="318" as="geometry" />
+        </mxCell>
+        <mxCell id="vnet_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontStyle=1;fontColor=#0078d4;" value="helloapp-dev-vnet  (10.0.0.0/16)" vertex="1">
+          <mxGeometry height="24" width="280" x="245" y="318" as="geometry" />
+        </mxCell>
+        <mxCell id="subnet_gw_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#f0a500;strokeWidth=1;arcSize=3;" value="" vertex="1">
+          <mxGeometry height="220" width="420" x="225" y="355" as="geometry" />
+        </mxCell>
+        <mxCell id="subnet_gw_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;fontColor=#b07800;" value="subnet: gateway (10.0.4.0/24)" vertex="1">
+          <mxGeometry height="20" width="260" x="235" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="agw_icon" parent="1" style="shape=mxgraph.azure2.application_gateways;fillColor=#0078d4;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="60" width="60" x="340" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="agw_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontStyle=1;" value="helloapp-dev-gw" vertex="1">
+          <mxGeometry height="20" width="150" x="295" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="agw_sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#555;" value="WAF_v2 · autoscale 1–3" vertex="1">
+          <mxGeometry height="18" width="170" x="285" y="478" as="geometry" />
+        </mxCell>
+        <mxCell id="waf_icon" parent="1" style="shape=mxgraph.azure2.web_application_firewall_policies;fillColor=#e31c1c;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="60" width="60" x="470" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="waf_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontStyle=1;" value="helloapp-dev-waf" vertex="1">
+          <mxGeometry height="20" width="110" x="445" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="waf_sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#555;" value="OWASP CRS 3.2 · Prevention" vertex="1">
+          <mxGeometry height="18" width="140" x="430" y="478" as="geometry" />
+        </mxCell>
+        <mxCell id="pip_icon" parent="1" style="shape=mxgraph.azure2.public_ip_addresses;fillColor=#0078d4;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="60" width="60" x="340" y="516" as="geometry" />
+        </mxCell>
+        <mxCell id="pip_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontStyle=1;" value="helloapp-dev-pip" vertex="1">
+          <mxGeometry height="20" width="150" x="295" y="578" as="geometry" />
+        </mxCell>
+        <mxCell id="pip_sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#555;" value="Static · Standard SKU" vertex="1">
+          <mxGeometry height="18" width="150" x="295" y="595" as="geometry" />
+        </mxCell>
+        <mxCell id="subnet_apps_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#2e7d32;strokeWidth=1;arcSize=3;" value="" vertex="1">
+          <mxGeometry height="420" width="900" x="225" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="subnet_apps_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;fontColor=#2e7d32;" value="subnet: apps (10.0.0.0/23)" vertex="1">
+          <mxGeometry height="20" width="240" x="235" y="626" as="geometry" />
+        </mxCell>
+        <mxCell id="cae_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f8e9;strokeColor=#558b2f;strokeWidth=1;dashed=1;arcSize=3;" value="" vertex="1">
+          <mxGeometry height="360" width="860" x="245" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="cae_icon" parent="1" style="shape=mxgraph.azure2.container_apps_environments;fillColor=#0078d4;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="24" width="24" x="255" y="666" as="geometry" />
+        </mxCell>
+        <mxCell id="cae_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;fontStyle=1;fontColor=#558b2f;" value="helloapp-dev-env  (internal load balancer — no public endpoint)" vertex="1">
+          <mxGeometry height="24" width="480" x="285" y="666" as="geometry" />
+        </mxCell>
+        <mxCell id="app_icon" parent="1" style="shape=mxgraph.azure2.container_apps;fillColor=#0078d4;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="60" width="60" x="310" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="app_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontStyle=1;" value="helloapp-dev-app" vertex="1">
+          <mxGeometry height="20" width="140" x="270" y="785" as="geometry" />
+        </mxCell>
+        <mxCell id="app_sub1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#555;" value="nginx:latest · port 80" vertex="1">
+          <mxGeometry height="18" width="140" x="270" y="803" as="geometry" />
+        </mxCell>
+        <mxCell id="app_sub2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#555;" value="replicas: 1–3" vertex="1">
+          <mxGeometry height="18" width="140" x="270" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="logs_icon" parent="1" style="shape=mxgraph.azure2.log_analytics_workspaces;fillColor=#0078d4;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="60" width="60" x="560" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="logs_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontStyle=1;" value="helloapp-dev-logs" vertex="1">
+          <mxGeometry height="20" width="150" x="515" y="785" as="geometry" />
+        </mxCell>
+        <mxCell id="logs_sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#555;" value="Log Analytics · 30 days" vertex="1">
+          <mxGeometry height="18" width="150" x="515" y="803" as="geometry" />
+        </mxCell>
+        <mxCell id="tf_icon" parent="1" style="shape=mxgraph.azure2.storage_accounts;fillColor=#0078d4;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="60" width="60" x="1220" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="tf_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontStyle=1;" value="tfstate7f05809b" vertex="1">
+          <mxGeometry height="20" width="140" x="1180" y="445" as="geometry" />
+        </mxCell>
+        <mxCell id="tf_sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#555;" value="Terraform State · Blob Storage" vertex="1">
+          <mxGeometry height="18" width="160" x="1170" y="463" as="geometry" />
+        </mxCell>
+        <mxCell id="devops_icon" parent="1" style="shape=mxgraph.azure2.azure_devops;fillColor=#0078d4;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="60" width="60" x="1220" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="devops_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontStyle=1;" value="Azure DevOps Pipeline" vertex="1">
+          <mxGeometry height="20" width="150" x="1175" y="605" as="geometry" />
+        </mxCell>
+        <mxCell id="devops_sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#555;" value="build → plan → apply" vertex="1">
+          <mxGeometry height="18" width="150" x="1175" y="623" as="geometry" />
+        </mxCell>
+        <mxCell id="e_inet_agw" edge="1" parent="1" source="internet" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#0078d4;strokeWidth=2;fontColor=#0078d4;fontSize=10;" target="agw_icon" value="HTTP request">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_waf_agw" edge="1" parent="1" source="waf_icon" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeColor=#e31c1c;fontSize=10;fontColor=#e31c1c;" target="agw_icon" value="attached">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_agw_pip" edge="1" parent="1" source="agw_icon" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#0078d4;strokeWidth=1;" target="pip_icon" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_agw_app" edge="1" parent="1" source="agw_icon" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2e7d32;strokeWidth=2;fontColor=#2e7d32;fontSize=10;" target="app_icon" value="private VNet">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_app_logs" edge="1" parent="1" source="app_icon" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeColor=#558b2f;fontSize=10;fontColor=#558b2f;" target="logs_icon" value="stdout">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_devops_tf" edge="1" parent="1" source="devops_icon" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeColor=#0078d4;fontSize=10;" target="tf_icon" value="state">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_devops_agw" edge="1" parent="1" source="devops_icon" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeColor=#888;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" target="agw_icon" value="provisions">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

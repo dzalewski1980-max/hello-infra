@@ -1,0 +1,10 @@
+variable "name"      { type = string }
+variable "location"  { type = string }
+variable "rg"        { type = string }
+variable "subnet_id" { type = string }
+variable "img"       { type = string }
+variable "cpu"       { type = number }
+variable "mem"       { type = string }
+variable "min_inst"  { type = number }
+variable "max_inst"  { type = number }
+variable "tags"      { type = map(string) }

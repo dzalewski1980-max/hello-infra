@@ -1,0 +1,146 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pr:
+  branches:
+    include:
+      - main
+
+variables:
+  - group: hello-infra-vars
+  - name: TF_VER
+    value: "1.7.5"
+  - name: TF_DIR
+    value: "terraform"
+  - name: APP_DIR
+    value: "app"
+
+stages:
+
+- stage: build
+  displayName: "build and push"
+  jobs:
+  - job: docker
+    pool:
+      vmImage: "ubuntu-latest"
+    steps:
+    - bash: |
+        sha=$(echo "$(Build.SourceVersion)" | cut -c1-8)
+        echo "##vso[task.setvariable variable=IMG_TAG]${sha}"
+      displayName: "set tag"
+
+    - task: Docker@2
+      displayName: "acr login"
+      inputs:
+        command: login
+        containerRegistry: "$(ACR_SERVICE_CONNECTION)"
+
+    - task: Docker@2
+      displayName: "build"
+      inputs:
+        command: build
+        buildContext: "$(APP_DIR)"
+        dockerfile: "$(APP_DIR)/Dockerfile"
+        repository: "$(ACR_LOGIN_SERVER)/helloapp"
+        tags: |
+          $(IMG_TAG)
+          latest
+
+    - task: Docker@2
+      displayName: "push"
+      inputs:
+        command: push
+        repository: "$(ACR_LOGIN_SERVER)/helloapp"
+        tags: |
+          $(IMG_TAG)
+          latest
+
+    - bash: |
+        echo "##vso[task.setvariable variable=IMG_TAG_OUT;isOutput=true]$(IMG_TAG)"
+      name: out
+      displayName: "export tag"
+
+- stage: plan
+  displayName: "tf plan"
+  dependsOn: build
+  variables:
+    IMG_TAG: $[ stageDependencies.build.docker.outputs['out.IMG_TAG_OUT'] ]
+  jobs:
+  - job: tf_plan
+    pool:
+      vmImage: "ubuntu-latest"
+    steps:
+    - task: TerraformInstaller@1
+      inputs:
+        terraformVersion: "$(TF_VER)"
+
+    - task: TerraformTaskV4@4
+      displayName: "init"
+      inputs:
+        provider: "azurerm"
+        command: "init"
+        workingDirectory: "$(TF_DIR)"
+        backendServiceArm: "$(AZURE_SERVICE_CONNECTION)"
+        backendAzureRmResourceGroupName: "tfstate-rg"
+        backendAzureRmStorageAccountName: "$(TF_STATE_STORAGE_ACCOUNT)"
+        backendAzureRmContainerName: "tfstate"
+        backendAzureRmKey: "hello-app.tfstate"
+
+    - task: TerraformTaskV4@4
+      displayName: "plan"
+      inputs:
+        provider: "azurerm"
+        command: "plan"
+        workingDirectory: "$(TF_DIR)"
+        environmentServiceNameAzureRM: "$(AZURE_SERVICE_CONNECTION)"
+        commandOptions: >
+          -out=tfplan
+          -var="img=$(ACR_LOGIN_SERVER)/helloapp:$(IMG_TAG)"
+          -var="env=$(ENVIRONMENT)"
+          -input=false
+
+    - publish: "$(TF_DIR)/tfplan"
+      artifact: tfplan
+
+- stage: apply
+  displayName: "tf apply"
+  dependsOn: plan
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+  jobs:
+  - deployment: tf_apply
+    environment: "production"
+    pool:
+      vmImage: "ubuntu-latest"
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: TerraformInstaller@1
+            inputs:
+              terraformVersion: "$(TF_VER)"
+
+          - download: current
+            artifact: tfplan
+
+          - task: TerraformTaskV4@4
+            displayName: "init"
+            inputs:
+              provider: "azurerm"
+              command: "init"
+              workingDirectory: "$(System.DefaultWorkingDirectory)/$(TF_DIR)"
+              backendServiceArm: "$(AZURE_SERVICE_CONNECTION)"
+              backendAzureRmResourceGroupName: "tfstate-rg"
+              backendAzureRmStorageAccountName: "$(TF_STATE_STORAGE_ACCOUNT)"
+              backendAzureRmContainerName: "tfstate"
+              backendAzureRmKey: "hello-app.tfstate"
+
+          - task: TerraformTaskV4@4
+            displayName: "apply"
+            inputs:
+              provider: "azurerm"
+              command: "apply"
+              workingDirectory: "$(System.DefaultWorkingDirectory)/$(TF_DIR)"
+              environmentServiceNameAzureRM: "$(AZURE_SERVICE_CONNECTION)"
+              commandOptions: "$(Pipeline.Workspace)/tfplan/tfplan"
